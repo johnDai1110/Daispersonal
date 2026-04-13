@@ -15,7 +15,6 @@
         .nav-links { display: flex; align-items: center; gap: 2rem; }
         .nav-links a { text-decoration: none; color: var(--dark); font-weight: 500; transition: 0.3s; font-size: 0.95rem; }
         .nav-links a:hover { color: var(--primary); }
-        .upload-btn { background: var(--primary); color: white !important; padding: 0.6rem 1.2rem; border-radius: 30px; transition: 0.3s; }
         
         header { padding: 6rem 8%; background: var(--white); display: flex; align-items: center; justify-content: center; gap: 4rem; flex-wrap: wrap; }
         .profile-pic { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; border: 8px solid var(--light); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
@@ -24,12 +23,15 @@
         .hero-text h2 { font-size: 1.4rem; color: var(--primary); font-weight: 400; margin-bottom: 1.5rem; }
         .tags { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
         .tag { background: var(--light); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; color: var(--gray); font-weight: 500; }
+        .intro-text { color: var(--gray); font-size: 0.95rem; margin-bottom: 1rem; }
+        .intro-en { font-size: 0.9rem; color: #999; font-style: italic; line-height: 1.5; }
         
         .section-title { text-align: center; font-size: 2.2rem; margin: 5rem 0 3rem; position: relative; padding-bottom: 1rem; }
         .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 3px; background: var(--primary); }
 
         .resume-container { max-width: 1100px; margin: 0 auto; padding: 0 5%; display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; }
         @media (max-width: 850px) { .resume-container { grid-template-columns: 1fr; } .hero-text { text-align: center; } header { text-align: center; } .tags { justify-content: center; } }
+        
         .timeline-item { border-left: 2px solid #eee; padding-left: 2rem; margin-bottom: 2.5rem; position: relative; }
         .timeline-item::before { content: ''; position: absolute; left: -6px; top: 8px; width: 10px; height: 10px; background: var(--primary); border-radius: 50%; }
         .timeline-date { font-weight: 700; color: var(--primary); font-size: 0.9rem; }
@@ -40,6 +42,12 @@
         .skill-category h4 { color: var(--dark); margin-bottom: 1rem; font-size: 1.1rem; }
         .skill-category ul { list-style: none; color: var(--gray); font-size: 0.95rem; }
 
+        /* 修復對齊：左側學校經歷 */
+        .aside-experience { display: flex; flex-direction: column; }
+        .aside-item { padding-left: 2rem; margin-bottom: 2.5rem; position: relative; }
+        .aside-item .timeline-date { font-weight: 700; color: var(--primary); font-size: 0.9rem; }
+        .aside-item .timeline-title { font-size: 1.2rem; font-weight: 700; margin: 0.4rem 0; }
+
         .portfolio-container { max-width: 1200px; margin: 0 auto; padding: 0 5% 6rem; }
         .masonry { column-count: 3; column-gap: 1.5rem; }
         @media (max-width: 900px) { .masonry { column-count: 2; } }
@@ -49,28 +57,16 @@
         .masonry-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8)); opacity: 0; transition: 0.3s; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; color: white; }
         .masonry-item:hover .masonry-overlay { opacity: 1; }
 
-        /* Modal 共通設定 */
+        /* Lightbox Modal */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(8px); }
-        
-        /* 上傳表單的 Modal */
-        .modal { background: white; padding: 2.5rem; border-radius: 20px; width: 90%; max-width: 500px; }
-        .form-group { margin-bottom: 1.2rem; }
-        .form-group input, .form-group textarea { width: 100%; padding: 0.8rem; border: 1.5px solid #eee; border-radius: 10px; font-family: inherit; }
-        .btn-group { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; }
-        .btn { padding: 0.7rem 1.5rem; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; }
-        .btn-cancel { background: #f5f5f5; color: var(--gray); }
-        .btn-submit { background: var(--primary); color: white; }
-
-        /* 作品放大展示的 Modal */
         .portfolio-modal { display: flex; background: white; border-radius: 20px; width: 90%; max-width: 1000px; max-height: 90vh; overflow: hidden; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.25); }
         @media (max-width: 768px) { .portfolio-modal { flex-direction: column; overflow-y: auto; } }
         .portfolio-modal-img { flex: 1.5; background: #f8f9fa; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 2rem; }
-        .portfolio-modal-img img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+        .portfolio-modal-img img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px; }
         .portfolio-modal-info { flex: 1; padding: 3rem 2.5rem; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid #eee; }
-        .portfolio-modal-title { font-size: 1.8rem; color: var(--primary); margin-bottom: 1rem; font-weight: 700; line-height: 1.3; }
+        .portfolio-modal-title { font-size: 1.8rem; color: var(--primary); margin-bottom: 1rem; font-weight: 700; }
         .portfolio-modal-desc { color: var(--gray); font-size: 1.05rem; line-height: 1.7; }
-        .close-view-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--gray); cursor: pointer; z-index: 10; width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: 0.3s; }
-        .close-view-btn:hover { color: var(--dark); transform: scale(1.1); }
+        .close-view-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--gray); cursor: pointer; z-index: 10; width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
@@ -80,7 +76,6 @@
         <div class="nav-links">
             <a href="#resume">經歷</a>
             <a href="#portfolio">作品</a>
-            <a href="#" class="upload-btn" onclick="openModal()">+ 預覽新作品</a>
         </div>
     </nav>
 
@@ -97,15 +92,18 @@
                 <span class="tag">影像剪輯</span>
                 <span class="tag">3D動畫</span>
             </div>
-            <p style="color: var(--gray); font-size: 1rem;">
+            <p class="intro-text">
                 本人抗壓性強，富有責任心，並擁有超過十年帶領視覺團隊的經驗，能幫助公司或企業建立形象、有效率地達成目標。本身理解力及創作力佳，工作效率高。擅長解決問題，能以經驗快速剖析反饋。
+            </p>
+            <p class="intro-en">
+                Highly resilient and responsible professional with over a decade of experience leading visual design teams. Proven track record in establishing brand identities and achieving organizational goals efficiently. Possess strong creative intuition and execution skills. Expert problem solver capable of providing rapid, experience-driven insights.
             </p>
         </div>
     </header>
 
     <h3 class="section-title" id="resume">Experience & Education</h3>
     <section class="resume-container">
-        <aside>
+        <aside class="aside-experience">
             <div class="skill-card">
                 <div class="skill-category">
                     <h4>專業技能</h4>
@@ -116,13 +114,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="timeline-item" style="border-left:none; padding-left:0;">
+            <div class="aside-item">
                 <div class="timeline-date">2008</div>
                 <div class="timeline-title">輔仁大學 應用美術系</div>
                 <div class="company-name">電腦動畫組畢業</div>
-                <p>入圍2007金犢獎</p>
+                <p style="font-size: 0.9rem; color: var(--gray);">入圍2007金犢獎</p>
             </div>
-            <div class="timeline-item" style="border-left:none; padding-left:0;">
+            <div class="aside-item">
                 <div class="timeline-title">彰化高中</div>
             </div>
         </aside>
@@ -164,7 +162,6 @@
     <h3 class="section-title" id="portfolio">Work Portfolio</h3>
     <section class="portfolio-container">
         <div class="masonry" id="portfolio-grid">
-            
             <div class="masonry-item">
                 <img src="image/作品集補充.jpg" alt="作品">
                 <div class="masonry-overlay">
@@ -172,31 +169,8 @@
                     <div class="masonry-desc">OPPO時期相關平面設計</div>
                 </div>
             </div>
-
         </div>
     </section>
-
-    <div class="modal-overlay" id="uploadModal">
-        <div class="modal">
-            <h3>預覽新作品 (前端測試)</h3>
-            <p style="font-size:0.85rem; color:var(--gray); margin-bottom:1rem;">註：因 GitHub 限制，此功能僅供預覽排版，重新整理後將恢復原狀。</p>
-            <form id="uploadForm">
-                <div class="form-group">
-                    <input type="file" id="workImage" accept="image/*" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="workTitle" placeholder="作品標題" required>
-                </div>
-                <div class="form-group">
-                    <textarea id="workDesc" rows="3" placeholder="作品說明..."></textarea>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-cancel" onclick="closeModal()">取消</button>
-                    <button type="submit" class="btn btn-submit">產生預覽</button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <div class="modal-overlay" id="viewModal">
         <div class="portfolio-modal">
@@ -212,69 +186,33 @@
     </div>
 
     <script>
-        // --- 預覽上傳邏輯 ---
-        const modal = document.getElementById('uploadModal');
-        const form = document.getElementById('uploadForm');
-        
-        function openModal() { modal.style.display = 'flex'; }
-        function closeModal() { modal.style.display = 'none'; form.reset(); }
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const fileInput = document.getElementById('workImage');
-            const title = document.getElementById('workTitle').value;
-            const desc = document.getElementById('workDesc').value;
-
-            if (fileInput.files && fileInput.files[0]) {
-                const imageUrl = URL.createObjectURL(fileInput.files[0]);
-                const newItem = document.createElement('div');
-                newItem.className = 'masonry-item';
-                newItem.innerHTML = `
-                    <img src="${imageUrl}" alt="${title}">
-                    <div class="masonry-overlay">
-                        <div class="masonry-title">${title}</div>
-                        <div class="masonry-desc">${desc}</div>
-                    </div>
-                `;
-                grid.insertBefore(newItem, grid.firstChild);
-                closeModal();
-            }
-        });
-
-        // --- 作品點擊放大邏輯 ---
         const grid = document.getElementById('portfolio-grid');
         const viewModal = document.getElementById('viewModal');
         const viewImage = document.getElementById('viewImage');
         const viewTitle = document.getElementById('viewTitle');
         const viewDesc = document.getElementById('viewDesc');
 
-        // 使用事件委派監聽整個 grid，這樣未來新增的作品也能點擊放大
+        // 作品點擊放大邏輯
         grid.addEventListener('click', function(e) {
             const item = e.target.closest('.masonry-item');
             if (item) {
-                // 取得被點擊卡片內的圖片與文字資訊
                 const imgSrc = item.querySelector('img').src;
                 const titleText = item.querySelector('.masonry-title').innerText;
                 const descText = item.querySelector('.masonry-desc').innerText;
 
-                // 將資訊填入放大視窗中
                 viewImage.src = imgSrc;
                 viewTitle.innerText = titleText;
                 viewDesc.innerText = descText;
-
-                // 顯示放大視窗
                 viewModal.style.display = 'flex';
             }
         });
 
         function closeViewModal() { 
             viewModal.style.display = 'none'; 
-            viewImage.src = ''; // 清除圖片網址，避免下次打開時閃爍舊圖
+            viewImage.src = ''; 
         }
 
-        // --- 點擊背景黑底關閉視窗 ---
         window.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
             if (e.target === viewModal) closeViewModal();
         });
     </script>
